@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Registration</title>
+	{%load staticfiles%}
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/bootstrap.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="{% url 'index'%}">Home</a></li>
+						<li class="active"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="row">
+			<form action="{%url 'login'%}" method="POST">
+			{%csrf_token%}
+				<label>Email:
+					<input type="text" name="email">
+				</label>
+				<label>Password:
+					<input type="text" name="password">
+				</label>
+				<button type="submit" name="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

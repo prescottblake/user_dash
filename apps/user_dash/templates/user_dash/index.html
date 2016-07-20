@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	{%load staticfiles%}
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/bootstrap.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="{% url 'index'%}">Home</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="row">
+			<a href="{%url 'registerPage'%}">Start</a>
+		</div>
+		<div class="row">
+			{%for user in User%}
+			<p>{{user.first_name}} {{user.last_name}}</p>
+			<p>{{user.pwhash}}</p>
+			{%endfor%}
+		</div>
+		<div class="row">
+			<div class="col-4-xs"></div>
+			<div class="col-4-xs"></div>
+			<div class="col-4-xs"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Information</title>
+	{%load staticfiles%}
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/bootstrap.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="{% url 'index'%}">Home</a></li>
+						<li class="active"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="row">
+			<h1>{{User.first_name}} {{User.last_name}}</h1>
+			<ul>
+				<li>Registered at: {{User.created_at}}</li>
+				<li>User ID: {{User.id}}</li>
+				<li>Email address: {{User.email}}</li>
+				<li>Description:</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

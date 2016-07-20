@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit User {{User.id}}</title>
+	{%load staticfiles%}
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/bootstrap.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
+</head>
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="{% url 'index'%}">Home</a></li>
+						<li class="active"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="row">
+			<h2>Edit User {{User.id}}</h2>
+			<form action="{%url 'update' id=User.id%}" method="POST">
+				{% csrf_token %}
+				<label>First Name:
+					<input type="text" name="first_name" value="{{User.first_name}}">
+				</label>
+				<label>Last Name:
+					<input type="text" name="last_name" value="{{User.last_name}}">
+				</label>
+				<label>Email:
+					<input type="text" name="email" value="{{User.email}}">
+				</label>
+				<label>User Level:
+					<select name='user_level'>
+						<option value="user">User</option>
+						<option value="admin">Admin</option>
+					</select>
+				</label>
+				<input type="submit" value="Save">
+			</form>
+			<a href="{%url 'dashboard'%}">Go Back</a>
+		</div>
+	</div>
+</body>
+</html>

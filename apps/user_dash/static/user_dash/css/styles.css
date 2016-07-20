@@ -1,0 +1,195 @@
+/*General Styles*/
+*{
+	/*outline: 1px dotted red;*/
+	font-family: "Georgia", serif;
+}
+html{
+	background-color: black;
+}
+
+body{
+	background-color: darkslategrey;
+}
+ul{
+	list-style-type: none;
+	text-align: center;
+	padding-left: 0px;
+}
+fieldset{
+	margin-top: 15px;
+	line-height: 100%;
+}
+hr{
+	padding-right: 0px;
+	padding-left: 0px; 
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border: 0;
+	border: 2px solid rgba(0,0,0,.5);
+	border-radius: 10px;
+}
+
+textarea{
+	resize: none;
+	width: 75%;
+	height: 40px;
+	display: block;
+	border-radius: 5px;
+	color: black;
+	box-shadow: 5px 5px 5px #243434;
+
+}
+	textarea.messageTextArea{
+		float: right;
+		height: 60px;
+	}
+/*End General Styles*/
+
+/*General classes*/
+.container{
+
+	margin-top: 100px;
+	color: white;
+	border-left: 2px solid #243434;
+	border-right: 2px solid #243434;
+}
+	.container h2{
+	user-select:none;
+	margin-bottom: 0px;
+	padding: 10px;
+	display:inline-block;
+	border: 2px solid black;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-radius:0px;
+	background: linear-gradient(#243434, black);
+	font-size: 1.5em;
+	}
+div.header{
+	background: linear-gradient(black, darkslategrey);
+	height: 100px;
+	width: 100%;
+	color: white;
+	padding: 0px 0px 0px 20px
+	margin:0px;
+	border:0px;
+	vertical-align:middle;
+	line-height: 100px;
+	position: fixed;
+	top:0px;
+	z-index: 2;
+
+}
+	.header h1{
+		border:0px;
+		margin: 0px 0px 0px 50px;
+		display: inline-block;
+	}
+	.header .headerRight{
+		margin: 25px 50px 0px 0px;
+		float:right;
+		line-height: 15px;
+	}
+.footer{
+	background: linear-gradient(darkslategrey, black);
+	height: 150px;
+	width: 100%;
+	padding: 50px 0px 0px 25px;
+	color: white;
+}
+/*End General Classes*/
+
+/*Login/Register specific Styles(index.html)*/
+#registerForm{
+	display: none;
+}
+.loginScreen{
+	height: 100%;
+}
+#loginSwitch{
+	display: none;
+}
+.centered{
+	text-align: center;
+}
+#loginBox{
+	margin: 20px 0px;
+	padding: 20px 20px;
+	background: linear-gradient(#243434, darkslategrey, dimgrey);
+	
+	color: white;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #243434;
+	border: 2px solid #243434
+}
+#loginBox label{
+	width: 75px;
+	font-size: .75em;
+}
+.loginRegisterForm input{
+	border-radius: 2px;
+}
+/*End of Login/Register specific Styles (index.html)*/
+
+/*bulliten_board specific Styles (bulliten_board.html)*/
+.message{
+	width: 75%;
+	padding: 15px 15px 5px 15px;
+	margin: 0px 0px 0px 0px;
+	float: left;
+	display: block;
+	background-color: rgba(255,255,255,.5);
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #243434;
+	color: black;
+}
+.messageHead{
+	height:40px;
+	margin: 5px 0px;
+	padding-left: 25px;
+	line-height: 60px;
+	background-color: #243434; 
+	vertical-align: middle;
+
+}
+.comment{
+	padding: 10px 10px 4px 10px;
+	margin: 0px 0px 10px 0px;
+	display:block;
+	background-color: rgba(255,255,255,.2);
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #243434;
+	color: white;
+}
+.commentHead p{
+	margin:0px;
+	padding: 0px;
+
+}
+.addComment{
+	display: none;
+}
+.addCommentBtn{
+	float: right;
+}
+form.addComment button{
+	float: right;
+}
+textarea.commentTextArea{
+	height: 40px;
+	float: right;
+}
+
+
+
+
+/*End of bulliten_board specific Styles (bulliten_board.html)*/
+/*Special classes*/
+.form-group input{
+	vertical-align: top;
+}
+.date{
+	font-size: .6em;
+	vertical-align: middle;
+}
+/*End special classes*/
