@@ -7,22 +7,22 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-default">
+	<div class="header">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="{% url 'index'%}">Home</a></li>
-						<li class="active"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+						<li class="active"><a href="{% url 'index' %}">Home</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+	</div>
+	<div class="container">
 		<div class="row">
 			<form action="{%url 'register'%}" method="POST">
 			{%csrf_token%}
@@ -36,14 +36,15 @@
 					<input type="text" name="last_name">
 				</label>
 				<label>Password:
-					<input type="text" name="password">
+					<input type="password" name="password">
 				</label>
 				<label>Confirm Password:
-					<input type="text" name="confirm_password">
+					<input type="password" name="confirm_password">
 				</label>
 				<button type="submit" name="submit">Submit</button>
 			</form>
 		</div>
 	</div>
+	<div class="footer"></div>
 </body>
 </html>

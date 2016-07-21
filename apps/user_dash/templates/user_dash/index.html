@@ -7,35 +7,54 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-default">
+	<div class="header">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="{% url 'index'%}">Home</a></li>
+						<li class="active"><a href="{% url 'index' %}">Home</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
+						<li class="active"><a href="{% url 'loginPage'%}">Sign In</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+	</div>
+	<div class="container">
+		
 		<div class="row">
-			<a href="{%url 'registerPage'%}">Start</a>
+			<div class="col-xs-4">
+				<h2>Features</h2>
+				<div class="infoBox">
+					<ul>
+						<li>Login</li>
+						<li>Register</li>
+						<li>Visit other people's pages</li>
+						<li>Post message</li>
+						<li>Comment on a message</li>
+						<li>Edit your profile</li>
+						<li>Admins can edit other profiles</li>
+						<li>Admins can create other users</li>
+						<li>Admins can delete users</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<h2>Getting Started</h2>
+				<div class="infoBox">
+					<p>To get started all you need to do is click the "Sign in" button in the top right corner of the screen.  There you will be able to either log in if you are already a user, or register yourself as a user.  Be sure to tell me if there are any errors that you experience! Thank you.</p>
+				</div>
+			</div>
+			<div class="col-xs-4"></div>
 		</div>
-		<div class="row">
-			{%for user in User%}
-			<p>{{user.first_name}} {{user.last_name}}</p>
-			<p>{{user.pwhash}}</p>
-			{%endfor%}
-		</div>
-		<div class="row">
-			<div class="col-4-xs"></div>
-			<div class="col-4-xs"></div>
-			<div class="col-4-xs"></div>
-		</div>
+	</div>
+	<div class="footer">
+	<p>Created by: Blake Prescott</p>
+	<p>Email: prescottblake@gmail.com</p>
+	<p>Written with HTML, CSS, javascript, jQuery, python, flask, and MySQL</p>
 	</div>
 </body>
 </html>

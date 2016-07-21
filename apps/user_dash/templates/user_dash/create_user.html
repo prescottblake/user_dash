@@ -7,43 +7,87 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-default">
+	<div class="header">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="{% url 'index'%}">Home</a></li>
 						<li class="active"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+						<li class="active"><a href="{% url 'profile' id=request.session.id%}">Your Profile</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
+						<li class="active"><a href="{%url 'logOut'%}">Log Out</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+	</div>
+	<div class="container">
 		<div class="row">
-			<form action="{%url 'addUser'%}" method="POST">
-			{%csrf_token%}
-				<label>Email:
-					<input type="text" name="email">
-				</label>
-				<label>First Name:
-					<input type="text" name="first_name">
-				</label>
-				<label>Last Name:
-					<input type="text" name="last_name">
-				</label>
-				<label>Password:
-					<input type="text" name="password">
-				</label>
-				<label>Confirm Password:
-					<input type="text" name="confirm_password">
-				</label>
-				<button type="submit" name="submit">Submit</button>
-			</form>
+			<div class="col-xs-3"></div>
+			<div class="col-xs-6 noPadLeft">
+				<h2>Create User</h2>
+			</div>
 		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div id="loginBox" class="col-xs-6">
+				{% if messages%}
+				<ul class="messages">
+					{%for message in messages%}
+					<li>{{message}}</li>
+					{%endfor%}
+				{%endif%}
+				<form action="{%url 'addUser'%}" method="POST">
+				{%csrf_token%}
+					<ul>
+						<li>
+							<fieldset class="form-group">
+								<label>Email:</label>
+								<input type="text" name="email">
+							</fieldset>
+						</li>
+						<li>
+							<fieldset class="form-group">
+								<label>First Name:</label>
+								<input type="text" name="first_name">
+							</fieldset>
+						</li>
+						<li>
+							<fieldset class="form-group">
+								<label>Last Name:</label>
+								<input type="text" name="last_name">
+							</fieldset>
+						</li>
+						<li>
+							<fieldset class="form-group">
+								<label>Password:</label>
+								<input type="password" name="password">
+							</fieldset>
+						</li>
+						<li>
+							<fieldset class="form-group">
+								<label>Confirm Password:</label>
+								<input type="password" name="confirm_password">
+							</fieldset>
+						</li>
+					</ul>
+					<div class="centered">
+						<fieldset class="form-group">
+							<button class="btn btn-primary" type="submit">Create</button>
+						</fieldset>
+					</div>
+				</form>	
+			</div>
+		</div>
+		<a href="{%url 'dashboard'%}">Go Back</a>
+	</div>
+	<div class="footer">
+	<p>Created by: Blake Prescott</p>
+	<p>Email: prescottblake@gmail.com</p>
+	<p>Written with HTML, CSS, javascript, jQuery, python, flask, and MySQL</p>
 	</div>
 </body>
 </html>

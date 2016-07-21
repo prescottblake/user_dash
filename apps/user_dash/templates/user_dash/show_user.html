@@ -5,33 +5,148 @@
 	{%load staticfiles%}
 	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/bootstrap.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'user_dash/css/styles.css' %}">
+	<script type="text/javascript" src="{%static 'user_dash/js/jquery-3.0.0.min.js' %}"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		// addCommentBtn on click toggles create comment text box
+		$('.addCommentBtn').on('click',(function(event){
+			$(this).siblings().toggle();
+			$(this).toggle();
+			
+		}));
+		// messageHead on click toggles message and its comment
+		$('.messageHead').on('click', function(event) {
+			$(this).siblings().toggle();
+			$(this).parent().siblings('.commentItem').toggle();
+			
+		});
+	});
+	</script>
 </head>
+
 <body>
-	<div class="container">
-		<nav class="navbar navbar-default">
+	<!-- Header for bulletin board page -->
+	<div class="header">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="{% url 'index'%}">Home</a></li>
 						<li class="active"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+						<li class="active"><a href="{% url 'profile' id=request.session.id %}">Your Profile</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="{%url 'loginPage'%}">Sign In</a></li>
+						<li class="active"><a href="{%url 'logOut'%}">Log Out</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+	</div>
+	<!-- Bootstrap container -->
+	<div class="container">
 		<div class="row">
-			<h1>{{User.first_name}} {{User.last_name}}</h1>
-			<ul>
-				<li>Registered at: {{User.created_at}}</li>
-				<li>User ID: {{User.id}}</li>
-				<li>Email address: {{User.email}}</li>
-				<li>Description:</li>
-			</ul>
+			<div class="col-xs-12">
+				<h2>{{User.first_name}} {{User.last_name}}</h2>
+				<ul class="userInfo">
+					<li><label>Registered at:</label> {{User.created_at}}</li>
+					<li><label>User ID:</label> {{User.id}}</li>
+					<li><label>Email address:</label> {{User.email}}</li>
+					<li><a href="{%url 'editProfile' id=request.session.id%}"> Edit Profile</a> </li>
+				</ul>
+			</div>
 		</div>
+		<!-- Post Message row -->
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>Post a message</h2>
+				<hr>
+				<hr style="display:none">
+				<!-- form gets user input and saves a message -->
+				<!-- activates route '/write_message' -->
+				<form action="{% url 'write_message' id=request.session.id page_id=User.id%}" method="POST">
+				{%csrf_token%}
+					<fieldset class="form-group">
+						<textarea class="messageTextArea noOverflow" name="message"></textarea>
+					</fieldset>
+					<button class="btn btn-primary btn-sm" type="submit" style="float:right">Post a Message</button>
+				</form>
+			</div>
+		</div>
+		<!-- div containing all messages and comments -->
+		<div class="messageCommentBox">
+			<h2>Messages</h2>
+			<hr>
+			<hr style="display:none">
+			<!-- for loop takes query object and isolates individual messages -->
+			<!-- contains  message_id, message_first_name, message_last_name, message_created_at-->
+			{%for message in User.message_user.all%}
+			<!-- messageCommentItem holds each group of a message and its comments -->
+			<div class="messageCommentItem">
+				<!-- messageItem holds just the message  -->
+				<div class="row messageItem">
+					<!-- messageHead displays the username and message created_at -->
+					<div class="col-xs-12 messageHead">
+						<h4>{{message.author.first_name}} {{message.author.last_name}} <span class="date">-{{message.created_at}}</span></h4>
+					</div>
+					<div class="col-xs-1"></div>
+					<div class="message col-xs-8">
+						<!-- displays message -->
+						<p>{{message.message}}</p>
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				<!-- commentItem displays all of the comments for a the message in messageCommentItem -->
+				<div class="commentItem">
+					<!-- row contains the write comment button -->
+					<!-- write comment button toggles create comment text box -->
+					<div class="row">
+						<div class="col-xs-3"></div>
+						<div class="col-xs-8">
+							<button class="btn btn-primary btn-sm addCommentBtn">Write Comment</button>
+							<!-- form gets user input and creates a comment -->
+							<!-- activates route 'write_comment/<message_id>' -->
+							<form class="addComment" action="{% url 'write_comment' id=request.session.id message_id=message.id page_id=User.id%}" method="POST" style="position: relative">
+							{%csrf_token%}
+								<fieldset class="form-group">
+									<textarea class="commentTextArea" name="comment"></textarea>
+								</fieldset>
+								<button class="btn btn-primary btn-sm" type="submit" style="">Post comment</button>
+							</form>
+							<button class = "btn btn-danger btn-sm addCommentBtn" type="button" style="display:none">Cancel</button>
+						</div>
+						<div class="col-xs-1"></div>
+					</div>
+					<!-- for loop displays all comments for the message indicated -->
+			{%for comment in message.comment_set.all%}
+					<div class="row">
+						<div class="col-xs-3"></div>
+						<!-- commentHead holds username and comment created_at -->
+						<div class="col-xs-8 commentHead">
+							<p>{{comment.author.first_name}} {{comment.author.last_name}} <span class="date">{{comment.created_at}}</span></p>
+						</div>
+						<div class="col-xs-1"></div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3"></div>
+						<div class="col-xs-8 comment">
+							<!-- prints the comment -->
+							<p>{{comment.comment}}</p>
+						</div>
+						<div class="col-xs-1"></div>
+					</div>
+			{%endfor%}
+				</div>
+			</div>
+			<hr>
+		{%endfor%}
+		</div>
+	</div>
+	<!-- footer for bulliten board -->
+	<div class="footer">
+	<p>Created by: Blake Prescott</p>
+	<p>Email: prescottblake@gmail.com</p>
+	<p>Written with HTML, CSS, javascript, jQuery, python, flask, and MySQL</p>
 	</div>
 </body>
 </html>

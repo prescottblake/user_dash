@@ -15,6 +15,13 @@ ul{
 	text-align: center;
 	padding-left: 0px;
 }
+a{
+	color: cornflowerblue;
+	text-decoration: underline;
+}
+nav a{
+	text-decoration:none;
+}
 fieldset{
 	margin-top: 15px;
 	line-height: 100%;
@@ -28,7 +35,9 @@ hr{
 	border: 2px solid rgba(0,0,0,.5);
 	border-radius: 10px;
 }
-
+input{
+	color: black;
+}
 textarea{
 	resize: none;
 	width: 75%;
@@ -43,6 +52,10 @@ textarea{
 		float: right;
 		height: 60px;
 	}
+table{
+	border: 2px solid #243434;
+	margin-left: 0px;
+}
 /*End General Styles*/
 
 /*General classes*/
@@ -113,7 +126,8 @@ div.header{
 	text-align: center;
 }
 #loginBox{
-	margin: 20px 0px;
+	margin: 0px 0px 20px 0px;
+
 	padding: 20px 20px;
 	background: linear-gradient(#243434, darkslategrey, dimgrey);
 	
@@ -123,7 +137,7 @@ div.header{
 	border: 2px solid #243434
 }
 #loginBox label{
-	width: 75px;
+	width: 75px;	
 	font-size: .75em;
 }
 .loginRegisterForm input{
@@ -191,5 +205,28 @@ textarea.commentTextArea{
 .date{
 	font-size: .6em;
 	vertical-align: middle;
+}
+.userInfo{
+	text-align: left;
+}
+.userInfo label{
+	width: 125px;
+}
+.noPadLeft{
+	padding-left: 0px;
+}
+.infoBox{
+	width: 100%;
+	padding: 10px; 
+	background: linear-gradient(#243434, darkgrey);
+	border: 2px solid #243434
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	display:inline-block;
+}
+.infoBox li{
+	
+	text-align: left;
 }
 /*End special classes*/
